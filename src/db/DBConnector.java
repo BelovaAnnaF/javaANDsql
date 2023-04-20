@@ -1,11 +1,16 @@
 package db;
 
+import settings.ISettings;
+import settings.PropertiesReader;
+
 import java.sql.*;
+import java.util.Map;
 
 public class DBConnector implements IDBConnector{
 
     private static Connection connection = null;
     private static Statement statement = null;
+    private Map<String, String> settings = new PropertiesReader().read();
 
     public DBConnector() {
         connect();
@@ -13,7 +18,15 @@ public class DBConnector implements IDBConnector{
 
     private void  connect() {
         if (connection == null) {
-            connection = DriverManager.getConnection();
+            try{
+            connection = DriverManager.getConnection(
+                    settings.get("url") + "/" + settings.get("db_name"),
+                    settings.get("username"),
+                    settings.get("password")
+            );
+        } catch (SQLException ex){
+                ex.printStackTrace();
+            }
         }
 
         if (statement == null) {

@@ -1,14 +1,22 @@
 import db.DBConnector;
 import db.IDBConnector;
+import tables.AbsTable;
+import tables.StudentTable;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
+    private static Map<String, String> columns = new HashMap<String, String>() {{
+        put("name", "varchar(50)");
+    }};
 
     public static void main (String[] args){
-        IDBConnector idbConnector = new DBConnector();
+        AbsTable studentTable = new StudentTable();
         try {
-            idbConnector.execeteRequest("create table student (id int, name varchar(255));");
+            studentTable.create(columns);
         } finally {
-            idbConnector.close();
+            studentTable.close();
         }
     }
 

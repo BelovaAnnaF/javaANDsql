@@ -10,11 +10,10 @@ public abstract class AbsTable {
     private IDBConnector idbConnector = new DBConnector();
 
     private String tableName;
-    private Map<String, String> columns;
 
-    public AbsTable(String tableName, Map<String, String> columns) {
+
+    public AbsTable(String tableName) {
         this.tableName = tableName;
-        this.columns = columns;
     }
 
     private String convertMapColumnsToString(Map<String, String> columns) {
@@ -23,9 +22,13 @@ public abstract class AbsTable {
                 .collect(Collectors.joining(", "));
     }
 
-    public void create() {
-        String sqlRequest = String.format("create table %s (%s);", this.tableName, convertMapColumnsToString(this.columns));
+    public void create(Map<String, String> columns) {
+        String sqlRequest = String.format("create table %s (%s);", this.tableName, convertMapColumnsToString(columns));
         idbConnector.execeteRequest(sqlRequest);
+    }
+
+    public void close() {
+        idbConnector.close();
     }
 
 }

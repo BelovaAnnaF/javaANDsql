@@ -10,6 +10,8 @@ public class Main {
     private static Map<String, String> columns = new HashMap<String, String>() {{
         put("id", "int");
         put("name", "varchar(50)");
+        put("sex", "varchar(50)");
+        put("id_group", "int");
     }};
 
     public static void main (String[] args){

@@ -31,7 +31,7 @@ public class DBConnector implements IDBConnector{
 
         if (statement == null) {
             try {
-                connection.createStatement();
+                statement = connection.createStatement();
             } catch(SQLException ex) {
                 ex.printStackTrace();
             }

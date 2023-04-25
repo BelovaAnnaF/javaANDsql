@@ -8,6 +8,7 @@ import java.util.Map;
 
 public class Main {
     private static Map<String, String> columns = new HashMap<String, String>() {{
+        put("id", "int");
         put("name", "varchar(50)");
     }};
 

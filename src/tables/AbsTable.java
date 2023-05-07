@@ -22,7 +22,13 @@ public abstract class AbsTable {
                 .collect(Collectors.joining(", "));
     }
 
+    public void drop(){
+        String sqlRequestDelete = String.format("drop table if exists %s;", this.tableName);
+        idbConnector.execeteRequest(sqlRequestDelete);
+    }
+
     public void create(Map<String, String> columns) {
+
         String sqlRequest = String.format("create table %s (%s);", this.tableName, convertMapColumnsToString(columns));
         idbConnector.execeteRequest(sqlRequest);
     }

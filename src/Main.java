@@ -16,6 +16,9 @@ public class Main {
 
     public static void main (String[] args){
         AbsTable studentTable = new StudentTable();
+
+            studentTable.drop();
+
         try {
             studentTable.create(columns);
         } finally {

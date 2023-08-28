@@ -22,7 +22,7 @@ public class DBConnector implements IDBConnector{
             connection = DriverManager.getConnection(
                     settings.get("url") + "/" + settings.get("db_name"),
                     settings.get("username"),
-                    settings.get("password")
+                    settings.get("pwd")
             );
         } catch (SQLException ex){
                 ex.printStackTrace();

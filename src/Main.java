@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Main {
-    private static Map<String, String> columns = new HashMap<String, String>() {{
+    private static Map<String, String> studentColumns = new HashMap<String, String>() {{
         put("id", "int");
         put("name", "varchar(50)");
         put("sex", "varchar(50)");
@@ -20,7 +20,7 @@ public class Main {
             studentTable.drop();
 
         try {
-            studentTable.create(columns);
+            studentTable.create(studentColumns);
         } finally {
             studentTable.close();
         }

@@ -14,6 +14,7 @@ public abstract class AbsTable {
 
     public AbsTable(String tableName) {
         this.tableName = tableName;
+
     }
 
     private String convertMapColumnsToString(Map<String, String> columns) {
@@ -21,7 +22,9 @@ public abstract class AbsTable {
                 .map((Map.Entry entry) -> String.format("%s %s", entry.getKey(), entry.getValue()))
                 .collect(Collectors.joining(", "));
     }
-
+//    public void delete() {
+//        String sqlRequest = String.format("drop table %s", this.tableName);
+//    }
     public void drop(){
         String sqlRequestDelete = String.format("drop table if exists %s;", this.tableName);
         idbConnector.execeteRequest(sqlRequestDelete);
@@ -29,9 +32,12 @@ public abstract class AbsTable {
 
     public void create(Map<String, String> columns) {
 
-        String sqlRequest = String.format("create table %s (%s);", this.tableName, convertMapColumnsToString(columns));
+        String sqlRequest = String.format("create table %s (%s);", tableName, convertMapColumnsToString(columns));
         idbConnector.execeteRequest(sqlRequest);
     }
+
+
+//    public
 
     public void close() {
         idbConnector.close();

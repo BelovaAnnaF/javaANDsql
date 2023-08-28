@@ -3,6 +3,7 @@ package tables;
 import db.DBConnector;
 import db.IDBConnector;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -10,7 +11,6 @@ public abstract class AbsTable {
     private IDBConnector idbConnector = new DBConnector();
 
     private String tableName;
-
 
     public AbsTable(String tableName) {
         this.tableName = tableName;
@@ -22,6 +22,7 @@ public abstract class AbsTable {
                 .map((Map.Entry entry) -> String.format("%s %s", entry.getKey(), entry.getValue()))
                 .collect(Collectors.joining(", "));
     }
+
 //    public void delete() {
 //        String sqlRequest = String.format("drop table %s", this.tableName);
 //    }
@@ -36,8 +37,10 @@ public abstract class AbsTable {
         idbConnector.execeteRequest(sqlRequest);
     }
 
-
-//    public
+    public void insert(String insertValue){
+        String sqlRequest = String.format("insert into %s values " + insertValue + ";", tableName);
+        idbConnector.execeteRequest(sqlRequest);
+    }
 
     public void close() {
         idbConnector.close();

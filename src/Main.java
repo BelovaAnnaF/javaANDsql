@@ -21,9 +21,11 @@ public class Main {
 
         try {
             studentTable.create(studentColumns);
+            studentTable.insert("('m','Ivan',1,2), ('w','Sveta',2,3)");
         } finally {
             studentTable.close();
         }
+
     }
 
 }

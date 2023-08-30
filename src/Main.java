@@ -1,5 +1,3 @@
-import db.DBConnector;
-import db.IDBConnector;
 import tables.AbsTable;
 import tables.StudentTable;
 

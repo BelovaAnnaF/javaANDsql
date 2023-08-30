@@ -16,7 +16,6 @@ public abstract class AbsTable {
         this.tableName = tableName;
 
     }
-
     private String convertMapColumnsToString(Map<String, String> columns) {
         return columns.entrySet().stream()
                 .map((Map.Entry entry) -> String.format("%s %s", entry.getKey(), entry.getValue()))

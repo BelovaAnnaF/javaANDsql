@@ -36,8 +36,8 @@ public abstract class AbsTable {
         idbConnector.execeteRequest(sqlRequest);
     }
 
-    public void insert(String insertValue){
-        String sqlRequest = String.format("insert into %s values " + insertValue + ";", tableName);
+    public void insert(String values, String insertValue){
+        String sqlRequest = String.format("insert into %s (%s) values %s;", tableName, values, insertValue);
         idbConnector.execeteRequest(sqlRequest);
     }
 

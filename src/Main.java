@@ -1,10 +1,6 @@
 
 import tables.AbsTable;
 import tables.StudentTable;
-
-import java.util.Arrays;
-import java.util.List;
-
 import static tables.StudentTable.*;
 
 

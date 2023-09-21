@@ -1,6 +1,8 @@
 package tables;
 
 
+import dataobj.Student;
+
 import java.util.*;
 
 public class StudentTable extends AbsTable{
@@ -15,7 +17,5 @@ public class StudentTable extends AbsTable{
     public StudentTable() {
         super(TABLE_NAME);
     }
-
-    public final static List<String> VALUES =Arrays.asList("sex","fio","id","id_group");
-    public final static List<String> INSERTVALUES = Arrays.asList("('m','Ivan',1,2)", "('w','Sveta',2,3)");
+    public final static List<String> INSERTVALUES = Arrays.asList("('m',1,2,'Ivan')", "('w',2,3,'Sveta')");
 }

@@ -8,7 +8,7 @@ public class Student extends StudentTable {
     public String fio;
     public String sex;
 
-    public Student(int id, int id_group, String fio, String sex) {
+    public Student(String sex, int id, int id_group, String fio) {
         this.id = id;
         this.id_group = id_group;
         this.fio = fio;
@@ -29,5 +29,10 @@ public class Student extends StudentTable {
 
     public String getSex() {
         return sex;
+    }
+    @Override
+    public String toString() {
+        String insertValue = String.format("'%s', %d, %d, '%s'", getSex(), getId(), getId_group(), getFio());
+        return insertValue;
     }
 }

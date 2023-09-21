@@ -1,7 +1,8 @@
-
 import tables.AbsTable;
 import tables.StudentTable;
+
 import static tables.StudentTable.*;
+
 
 
 public class Main {
@@ -16,7 +17,7 @@ public class Main {
         try {
             studentTable.create(COLUMNS);
 
-            studentTable.insert(VALUES, INSERTVALUES);
+            studentTable.insert(COLUMNS, INSERTVALUES);
         } finally {
             studentTable.close();
         }

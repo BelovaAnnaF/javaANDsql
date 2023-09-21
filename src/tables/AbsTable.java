@@ -3,6 +3,7 @@ package tables;
 import db.DBConnector;
 import db.IDBConnector;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -16,14 +17,22 @@ public abstract class AbsTable {
         this.tableName = tableName;
     }
     private String convertMapColumnsToString(Map<String, String> columns) {
-        return columns.entrySet().stream()
-                .map((Map.Entry entry) -> String.format("%s %s", entry.getKey(), entry.getValue()))
-                .collect(Collectors.joining(", "));
+        List<String> columnsStr = new ArrayList<>();
+
+        for(Map.Entry<String, String> entry: columns.entrySet()) {
+            columnsStr.add(String.format("%s %s", entry.getKey(), entry.getValue()));
+            }
+        return String.join(", ", columnsStr);
     }
-    private String convertListValueToString(List<String> values){
-        return values.stream().map(Object::toString).collect(Collectors.joining(", "));
+    private String convertColumnsNameToString(Map<String, String> columns){
+        List<String> columnsName = new ArrayList<>();
+        for(Map.Entry<String, String> entry: columns.entrySet()){
+            columnsName.add(String.format("%s", entry.getKey()));
+        }
+        return String.join(", ", columnsName);
     }
     private String convertListInsertValueToString(List<String> insertValues){
+       // List<String> insertValues = new ArrayList<>();
         return insertValues.stream().map(Object::toString).collect(Collectors.joining(", "));
     }
 
@@ -38,10 +47,9 @@ public abstract class AbsTable {
         idbConnector.execeteRequest(sqlRequest);
     }
 
-    public void insert(List<String> values, List<String> insertValues){
-        String sqlRequest = String.format("insert into %s (%s) values %s;", this.tableName,
-                convertListValueToString(values), convertListInsertValueToString(insertValues));
-        idbConnector.execeteRequest(sqlRequest);
+    public void insert(Map<String, String> columns, List<String> insertValues){
+            idbConnector.execete(String.format("insert into %s (%s) values %s;", this.tableName,
+                convertColumnsNameToString(columns), convertListInsertValueToString(insertValues)));
     }
 
 

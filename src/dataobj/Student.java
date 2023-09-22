@@ -2,6 +2,8 @@ package dataobj;
 
 import tables.StudentTable;
 
+import java.util.Map;
+
 public class Student extends StudentTable {
     public int id;
     public int id_group;
@@ -32,7 +34,6 @@ public class Student extends StudentTable {
     }
     @Override
     public String toString() {
-        String insertValue = String.format("'%s', %d, %d, '%s'", getSex(), getId(), getId_group(), getFio());
-        return insertValue;
+        return String.format("'%s', %d, %d, '%s'", getSex(), getId(), getId_group(), getFio());
     }
 }

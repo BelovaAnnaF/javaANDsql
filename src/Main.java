@@ -17,7 +17,7 @@ public class Main {
         try {
             studentTable.create(COLUMNS);
 
-            studentTable.insert(COLUMNS, INSERTVALUES);
+            studentTable.insert(COLUMNS);
         } finally {
             studentTable.close();
         }

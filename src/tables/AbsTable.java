@@ -31,10 +31,9 @@ public abstract class AbsTable {
         }
         return String.join(", ", columnsName);
     }
-    private String convertListInsertValueToString(List<String> insertValues){
-       // List<String> insertValues = new ArrayList<>();
-        return insertValues.stream().map(Object::toString).collect(Collectors.joining(", "));
-    }
+//    private String convertListInsertValueToString(String str){
+//        return str = tableName.toString();
+//    }
 
     public void drop(){
         String sqlRequestDelete = String.format("drop table if exists %s;", this.tableName);
@@ -47,9 +46,9 @@ public abstract class AbsTable {
         idbConnector.execeteRequest(sqlRequest);
     }
 
-    public void insert(Map<String, String> columns, List<String> insertValues){
+    public void insert(Map<String, String> columns){
             idbConnector.execete(String.format("insert into %s (%s) values %s;", this.tableName,
-                convertColumnsNameToString(columns), convertListInsertValueToString(insertValues)));
+                convertColumnsNameToString(columns), tableName.toString()));
     }
 
 

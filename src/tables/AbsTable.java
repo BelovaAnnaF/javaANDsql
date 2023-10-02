@@ -3,13 +3,13 @@ package tables;
 import db.DBConnector;
 import db.IDBConnector;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public abstract class AbsTable {
-    private IDBConnector idbConnector = new DBConnector();
+    public IDBConnector idbConnector = new DBConnector();
 
     private String tableName="";
 
@@ -24,16 +24,13 @@ public abstract class AbsTable {
             }
         return String.join(", ", columnsStr);
     }
-    private String convertColumnsNameToString(Map<String, String> columns){
+    public String convertColumnsNameToString(Map<String, String> columns){
         List<String> columnsName = new ArrayList<>();
         for(Map.Entry<String, String> entry: columns.entrySet()){
             columnsName.add(String.format("%s", entry.getKey()));
         }
         return String.join(", ", columnsName);
     }
-//    private String convertListInsertValueToString(String str){
-//        return str = tableName.toString();
-//    }
 
     public void drop(){
         String sqlRequestDelete = String.format("drop table if exists %s;", this.tableName);
@@ -46,15 +43,15 @@ public abstract class AbsTable {
         idbConnector.execeteRequest(sqlRequest);
     }
 
-    public void insert(Map<String, String> columns){
-            idbConnector.execete(String.format("insert into %s (%s) values %s;", this.tableName,
-                convertColumnsNameToString(columns), tableName.toString()));
+    public void insert(Map<String, String> columns, String values){
+        String sqlRequestInsert = String.format("insert into %s (%s) values %s;", this.tableName,
+                convertColumnsNameToString(columns), values);
+        idbConnector.execeteRequest(sqlRequestInsert);
     }
-
 
 
     public void close() {
-        idbConnector.close();
-    }
+        idbConnector.close();    }
+
 
 }

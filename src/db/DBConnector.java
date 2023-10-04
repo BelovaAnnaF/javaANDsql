@@ -59,7 +59,6 @@ public class DBConnector implements IDBConnector{
 
     }
 
-    @Override
     public void close() {
         if (statement != null){
             try {

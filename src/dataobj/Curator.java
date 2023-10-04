@@ -18,4 +18,8 @@ public class Curator extends CuratorTable {
     public String getFio() {
         return fio;
     }
+    @Override
+    public String toString() {
+        return String.format("(%d, '%s')", getId(), getFio());
+    }
 }

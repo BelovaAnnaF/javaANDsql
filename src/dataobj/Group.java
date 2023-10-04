@@ -24,4 +24,8 @@ public class Group extends GroupTable {
     public int getId_curator() {
         return id_curator;
     }
+    @Override
+    public String toString() {
+        return String.format("('%s', %d, %d)", getName(), getId(), getId_curator());
+    }
 }

@@ -37,9 +37,4 @@ public class Student extends StudentTable {
     public String toString() {
         return String.format("('%s', %d, %d, '%s')", getSex(), getId(), getId_group(), getFio());
     }
-//    Student student = new Student("m",1,2, "Ivan");
-    // String s1 = student.toString();
-//    public String values = student.toString();
-
-
 }

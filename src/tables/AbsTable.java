@@ -10,7 +10,6 @@ import java.util.Map;
 
 public abstract class AbsTable {
     public IDBConnector idbConnector = new DBConnector();
-
     private String tableName="";
 
     public AbsTable(String tableName) {
@@ -33,25 +32,23 @@ public abstract class AbsTable {
     }
 
     public void drop(){
-        String sqlRequestDelete = String.format("drop table if exists %s;", this.tableName);
-        idbConnector.execeteRequest(sqlRequestDelete);
+        String sqlRequest = String.format("drop table if exists %s;", this.tableName);
+        idbConnector.execeteRequest(sqlRequest);
     }
 
     public void create(Map<String, String> columns) {
 
-        String sqlRequest = String.format("create table %s (%s);", this.tableName, convertMapColumnsToString(columns));
+        String sqlRequest = String.format("create table if not exists %s (%s);",
+                this.tableName, this.convertMapColumnsToString(columns));
         idbConnector.execeteRequest(sqlRequest);
     }
 
     public void insert(Map<String, String> columns, String values){
-        String sqlRequestInsert = String.format("insert into %s (%s) values %s;", this.tableName,
-                convertColumnsNameToString(columns), values);
-        idbConnector.execeteRequest(sqlRequestInsert);
+        String sqlRequest = String.format("insert into %s (%s) values %s;", this.tableName,
+                this.convertColumnsNameToString(columns), values);
+        idbConnector.execeteRequest(sqlRequest);
     }
-
 
     public void close() {
         idbConnector.close();    }
-
-
 }

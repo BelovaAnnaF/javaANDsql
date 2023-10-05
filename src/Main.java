@@ -1,10 +1,7 @@
 import dataobj.Curator;
 import dataobj.Group;
 import dataobj.Student;
-import tables.AbsTable;
-import tables.CuratorTable;
-import tables.GroupTable;
-import tables.StudentTable;
+import tables.*;
 
 
 import static tables.CuratorTable.*;
@@ -45,6 +42,8 @@ public class Main {
         GroupTable group2 = new Group(2,"B", 1);
         GroupTable group3 = new Group(3,"C", 2);
 
+        Selects request = new Selects();
+
         studentTable.drop();
         curatorTable.drop();
         groupTable.drop();
@@ -78,6 +77,16 @@ public class Main {
             groupTable.insert(COLUMNGROUP, group1.toString());
             groupTable.insert(COLUMNGROUP, group2.toString());
             groupTable.insert(COLUMNGROUP, group3.toString());
+
+            request.studentInfo();
+            request.studentCount();
+            request.studentWomen();
+            request.groupInfo(); //список групп до изменения куратора
+
+            groupTable.update("id_curator = 4", "id = 1");
+
+            request.groupInfo();
+            request.studentFromGroup();
 
         } finally {
             studentTable.close();

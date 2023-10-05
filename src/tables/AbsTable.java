@@ -3,7 +3,6 @@ package tables;
 import db.DBConnector;
 import db.IDBConnector;
 
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +35,9 @@ public abstract class AbsTable {
         idbConnector.execeteRequest(sqlRequest);
     }
 
+//    Создать таблицу Student     Колонки id, fio, sex, id_group
+//    Создать таблицу Group     Колонки id, name, id_curator
+//    Создать таблицу Curator   Колонки id, fio
     public void create(Map<String, String> columns) {
 
         String sqlRequest = String.format("create table if not exists %s (%s);",
@@ -43,9 +45,19 @@ public abstract class AbsTable {
         idbConnector.execeteRequest(sqlRequest);
     }
 
+//    Заполнить таблицы данными(15 студентов, 3 группы, 4 куратора)
+
     public void insert(Map<String, String> columns, String values){
         String sqlRequest = String.format("insert into %s (%s) values %s;", this.tableName,
                 this.convertColumnsNameToString(columns), values);
+        idbConnector.execeteRequest(sqlRequest);
+    }
+
+//    Обновить данные по группе сменив куратора
+
+    public void update(String set, String query){
+        String sqlRequest = String.format("update %s set %s where %s;", this.tableName,
+                set, query);
         idbConnector.execeteRequest(sqlRequest);
     }
 

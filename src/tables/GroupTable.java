@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public class GroupTable extends AbsTable{
-    private final static String TABLE_NAME = "GroupTable";
+    protected final static String TABLE_NAME = "GroupTable";
     public static Map<String, String> COLUMNGROUP = new HashMap<String, String>() {{
         put("id", "int");
         put("name_group", "TEXT");

@@ -79,13 +79,18 @@ public class Main {
             groupTable.insert(COLUMNGROUP, group3.toString());
 
             request.studentInfo();
+            System.out.println();
             request.studentCount();
+            System.out.println();
             request.studentWomen();
+            System.out.println();
             request.groupInfo(); //список групп до изменения куратора
+            System.out.println();
 
             groupTable.update("id_curator = 4", "id = 1");
 
             request.groupInfo();
+            System.out.println();
             request.studentFromGroup();
 
         } finally {
